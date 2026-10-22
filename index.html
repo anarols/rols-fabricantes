@@ -108,6 +108,7 @@
   .intro .txt .body + .body{ margin-top:0; }
   .intro .txt .arrow{ margin-top:6px; }
   .intro figure{ margin:0; }
+  @media (max-width:899px){ .intro figure{ order:-1; } }
   .intro figure img, .intro figure video{ display:block; width:100%; border-radius:16px; aspect-ratio:960/735; object-fit:cover; background:var(--surface-deep); }
   .intro figcaption{ margin-top:10px; font-size:11px; letter-spacing:.02em; color:var(--soft); }
   .cifras{ list-style:none; margin:36px 0 0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; border-top:1px solid var(--line-strong); }
@@ -117,10 +118,10 @@
   .cifras small{ display:block; margin-top:10px; font-size:12px; line-height:1.5; color:var(--muted); max-width:22ch; }
   @media (max-width:560px){
     .cifras{ display:flex; flex-direction:column; }
-    .cifras li{ display:grid; grid-template-columns:4.6rem 1fr; align-items:baseline; column-gap:16px; padding:16px 0; }
+    .cifras li{ display:block; padding:18px 0; }
     .cifras li + li{ padding-left:0; border-left:0; }
-    .cifras b{ font-size:1.9rem; }
-    .cifras small{ margin-top:0; font-size:12px; line-height:1.5; max-width:none; }
+    .cifras b{ font-size:2.1rem; }
+    .cifras small{ margin-top:8px; font-size:12.5px; line-height:1.55; max-width:none; }
   }
 
   /* ---------- 4ª generación: banda con foto ancha ---------- */
@@ -216,6 +217,7 @@
   .ubi .mapwrap{ position:relative; border-radius:16px; overflow:hidden; border:1px solid var(--line); background:#e7e4e0; aspect-ratio:4/3.5; margin:0; }
   @media (min-width:860px){ .ubi .mapwrap{ aspect-ratio:auto; height:468px; } }
   .ubi .mapwrap svg{ display:block; width:100%; height:100%; }
+  @media (max-width:859px){ .ubi .mapwrap svg{ transform:scale(1.5); transform-origin:50% 55%; } }
   .ubi a.mapwrap{ display:block; text-decoration:none; cursor:pointer; }
   .ubi a.mapwrap svg{ transition:transform .55s ease; }
   .ubi a.mapwrap:hover svg{ transform:scale(1.015); }

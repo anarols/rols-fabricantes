@@ -34,6 +34,8 @@
   .sec{ padding-block:40px; }
   @media (min-width:768px){ .sec{ padding-block:56px; } }
 
+  .only-mob{ display:none; }
+  @media (max-width:640px){ .only-desk{ display:none !important; } .only-mob{ display:block; } }
   .eyebrow{ font-size:10.5px; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--soft); margin:0; }
   h1,h2,h3{ font-family:var(--display); font-weight:300; margin:0; text-wrap:balance; }
   h1{ font-size:clamp(2.1rem,4.6vw,3.5rem); line-height:1.04; letter-spacing:-.022em; }
@@ -99,9 +101,9 @@
   .hero video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
   @media (max-width:640px){ .hero{ height:auto; min-height:0; aspect-ratio:1/1; max-height:calc(100svh - var(--cabecera)); } }
 
-  /* ---------- intro: texto + foto + cifras ---------- */
+  /* ---------- intro: texto + foto ---------- */
   .intro{ display:grid; grid-template-columns:minmax(0,1fr); gap:30px; }
-  @media (min-width:900px){ .intro{ grid-template-columns:minmax(0,1fr) minmax(0,1.15fr); gap:24px 64px; align-items:center; } }
+  @media (min-width:900px){ .intro{ grid-template-columns:minmax(390px,1fr) minmax(0,2.4fr); gap:24px 40px; align-items:end; } }
   .intro .txt{ display:flex; flex-direction:column; align-items:flex-start; gap:16px; }
   .intro .txt h1{ font-size:clamp(1.9rem,3.6vw,2.9rem); max-width:14ch; }
   .intro .txt h1 + .body{ margin-top:4px; }
@@ -109,20 +111,7 @@
   .intro .txt .arrow{ margin-top:6px; }
   .intro figure{ margin:0; }
   @media (max-width:899px){ .intro figure{ order:-1; } }
-  .intro figure img, .intro figure video{ display:block; width:100%; border-radius:16px; aspect-ratio:960/735; object-fit:cover; background:var(--surface-deep); }
-  .intro figcaption{ margin-top:10px; font-size:11px; letter-spacing:.02em; color:var(--soft); }
-  .cifras{ list-style:none; margin:36px 0 0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0; border-top:1px solid var(--line-strong); }
-  .cifras li{ padding:20px 20px 22px 0; border-bottom:1px solid var(--line); }
-  .cifras li + li{ padding-left:20px; border-left:1px solid var(--line); }
-  .cifras b{ display:block; font-family:var(--display); font-weight:300; font-size:clamp(1.9rem,3.6vw,3.1rem); line-height:1; letter-spacing:-.02em; }
-  .cifras small{ display:block; margin-top:10px; font-size:12px; line-height:1.5; color:var(--muted); max-width:22ch; }
-  @media (max-width:560px){
-    .cifras{ display:flex; flex-direction:column; border-top:0; margin-top:20px; }
-    .cifras li{ display:block; padding:18px 0; }
-    .cifras li + li{ padding-left:0; border-left:0; }
-    .cifras b{ font-size:2.1rem; }
-    .cifras small{ margin-top:8px; font-size:12.5px; line-height:1.55; max-width:none; }
-  }
+  .intro figure img, .intro figure video{ display:block; width:100%; border-radius:16px; aspect-ratio:960/735; max-height:calc(100svh - var(--cabecera) - 112px); object-fit:cover; background:var(--surface-deep); }
 
   /* ---------- 4ª generación: banda con foto ancha ---------- */
   .gen{ background:var(--surface-deep); }
@@ -130,9 +119,19 @@
   @media (min-width:900px){ .gen .inner{ grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:56px; padding-block:56px; } }
   .gen figure{ margin:0; }
   .gen img{ width:100%; border-radius:16px; aspect-ratio:3/2; object-fit:cover; object-position:center 30%; background:var(--surface-warm); }
-  .gen figcaption{ margin-top:10px; font-size:11px; letter-spacing:.02em; color:var(--soft); }
   .gen .txt{ display:flex; flex-direction:column; align-items:flex-start; gap:16px; }
   .gen .txt .body + .body{ margin-top:0; }
+
+  @media (max-width:640px){
+    .gen .inner{ position:relative; display:block; padding-block:40px; }
+    .gen figure{ position:relative; border-radius:16px; overflow:hidden; }
+    .gen figure img{ aspect-ratio:3/4; object-position:center 20%; }
+    .gen figure::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(20,19,18,.9) 0%, rgba(20,19,18,.35) 48%, rgba(20,19,18,0) 78%); pointer-events:none; }
+    .gen .txt{ position:absolute; left:20px; right:20px; bottom:40px; padding:24px; gap:10px; z-index:2; }
+    .gen .txt .eyebrow{ color:rgba(255,255,255,.82); }
+    .gen .txt h2{ color:#fff; }
+    .gen .txt .only-mob{ color:rgba(255,255,255,.9); font-size:13px; line-height:1.6; margin:0; }
+  }
 
   /* ---------- España: titular + texto + mosaico de fábrica ---------- */
   .esp-head{ display:grid; grid-template-columns:minmax(0,1fr); gap:14px; margin-top:22px; }
@@ -143,7 +142,6 @@
   @media (min-width:860px){ .mosaico{ grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px 20px; margin-top:38px; } }
   .mosaico figure{ margin:0; }
   .mosaico img{ width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:16px; background:var(--surface-deep); }
-  .mosaico figcaption{ margin-top:10px; font-size:11px; letter-spacing:.02em; color:var(--soft); }
 
   /* ---------- carruseles móvil (menos scroll) ---------- */
   .cdots{ display:none; }
@@ -178,9 +176,10 @@
   .fiber .info .mn{ display:block; margin-top:7px; font-family:var(--display); font-weight:300; font-size:clamp(1.6rem,2.4vw,2.05rem); line-height:1; letter-spacing:-.02em; text-shadow:0 1px 14px rgba(0,0,0,.3); }
   .fiber .reveal{ overflow:hidden; max-height:0; opacity:0; margin-top:0; transition:max-height .5s ease, opacity .4s ease, margin-top .5s ease; }
   .fiber .reveal .d{ font-size:12.5px; line-height:1.65; color:rgba(255,255,255,.9); max-width:34ch; }
-  .fiber .reveal .cols{ display:flex; flex-wrap:wrap; gap:7px; margin-top:14px; }
-  .fiber .reveal .cols a{ font-size:11px; font-weight:500; letter-spacing:.03em; text-decoration:none; border:1px solid rgba(255,255,255,.55); border-radius:999px; padding:5px 12px; color:#fff; transition:background-color .25s ease, color .25s ease; }
-  .fiber .reveal .cols a:hover{ background:#fff; color:var(--fg); }
+  .fiber .reveal .cols{ margin-top:16px; }
+  .fiber .reveal .cols a{ display:inline-flex; align-items:center; gap:12px; width:fit-content; border-bottom:1px solid rgba(255,255,255,.6); padding-bottom:7px; font-size:10.5px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; text-decoration:none; color:#fff; transition:gap .3s ease, border-color .3s ease; }
+  .fiber .reveal .cols a svg{ width:12px; height:12px; flex:none; }
+  .fiber .reveal .cols a:hover{ gap:20px; border-color:#fff; }
   @media (hover:hover){
     .fiber:hover .grad{ background:linear-gradient(to top, rgba(24,23,21,.93) 0%, rgba(24,23,21,.74) 52%, rgba(24,23,21,.4) 100%); }
     .fiber:hover .reveal{ max-height:280px; opacity:1; margin-top:14px; }
@@ -339,8 +338,7 @@
       <div class="txt">
         <p class="eyebrow">Nosotros</p>
         <h1>Fábrica de alfombras y moquetas desde 1917</h1>
-        <p class="body">Más de 100 años diseñando y tejiendo <a href="https://www.rolscarpets.com/productos/alfombras-a-medida/">alfombras a medida</a> y <a href="https://www.rolscarpets.com/productos/moquetas-a-medida/">moquetas</a> con materiales sostenibles desde nuestra <strong>fábrica de alfombras en Crevillent</strong>, Alicante. Mantenemos la producción en España con técnicas tradicionales transmitidas entre generaciones de artesanos locales.</p>
-        <p class="body">¿Tienes un proyecto entre manos? Como fabricante de alfombras y moquetas, estaremos encantados de ayudarte.</p>
+        <p class="body">Más de 100 años tejiendo en nuestra <strong>fábrica de alfombras en Crevillent</strong>, con fibras naturales y recicladas y el compromiso B Corp: menos impacto ambiental cada año.</p>
         <a class="arrow" href="https://www.rolscarpets.com/contacto/">Contacta con nosotros <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a>
       </div>
       <figure>
@@ -348,14 +346,8 @@
                poster="https://www.rolscarpets.com/wp-content/uploads/2022/05/fabrica-alfombras-rols.jpg"
                data-desktop="https://www.rolscarpets.com/wp-content/uploads/2025/10/rols-carpets-nosotros.mp4"
                data-mobile="https://www.rolscarpets.com/wp-content/uploads/2025/10/rols-carpets-nosotros-movil.mp4"></video>
-        <figcaption>Nuestra fábrica en Crevillent</figcaption>
       </figure>
     </div>
-    <ul class="cifras">
-      <li><b>1917</b><small>Francisco Gómez se hace con un telar manual</small></li>
-      <li><b>+100</b><small>años diseñando y tejiendo alfombras a medida y moquetas</small></li>
-      <li><b>4</b><small>generaciones de tradición familiar</small></li>
-    </ul>
   </section>
 
   <!-- 4ª GENERACIÓN -->
@@ -363,13 +355,13 @@
     <div class="wrap inner">
       <figure>
         <img src="https://www.rolscarpets.com/wp-content/uploads/2024/09/cuarta-generacion-Rols-Carpets-scaled.webp" alt="Cuarta generación Rols Carpets" width="2560" height="1683" loading="lazy">
-        <figcaption>Cuarta generación Rols Carpets</figcaption>
       </figure>
       <div class="txt">
         <p class="eyebrow">Tradición textil</p>
         <h2>Tradición textil de 4ª generación</h2>
-        <p class="body">Venimos de una larga tradición familiar de ya 4 generaciones que empezó en 1917, cuando el precursor de la empresa, Francisco Gómez se hizo con un telar manual para tejer fibras naturales de sisal y esparto.</p>
-        <p class="body">A día de hoy se han incorporado a este gran legado los biznietos, que llevan la dirección y estrategia de la empresa adaptándose a los nuevos tiempos, pero sin olvidarse nunca de la esencia de la marca: artesanía sostenible y de calidad que no pasan de moda.</p>
+        <p class="body only-desk">Venimos de una larga tradición familiar de ya 4 generaciones que empezó en 1917, cuando el precursor de la empresa, Francisco Gómez se hizo con un telar manual para tejer fibras naturales de sisal y esparto.</p>
+        <p class="body only-desk">A día de hoy se han incorporado a este gran legado los biznietos, que llevan la dirección y estrategia de la empresa adaptándose a los nuevos tiempos, pero sin olvidarse nunca de la esencia de la marca: artesanía sostenible y de calidad que no pasan de moda.</p>
+        <p class="body only-mob">Cuatro generaciones tejiendo desde 1917, sin perder nunca la esencia: artesanía sostenible y de calidad que no pasa de moda.</p>
       </div>
     </div>
   </section>
@@ -379,13 +371,14 @@
     <div class="ruleHead"><p class="eyebrow">Fabricación en España</p><span class="rule"></span></div>
     <div class="esp-head">
       <h2>Orgullosos de ser fabricantes de moquetas en España</h2>
-      <p class="body">Seguimos apostando por fabricar en España, creando empleo y manteniendo viva la tradición alfombrera de Crevillent. Gran parte de nuestro equipo son hijos de antiguos trabajadores que continúan el oficio: la prueba de que nuestros valores siguen intactos. Nuestro mayor recurso son las personas, y eso nos enorgullece.</p>
+      <p class="body only-desk">Seguimos apostando por fabricar en España, creando empleo y manteniendo viva la tradición alfombrera de Crevillent. Gran parte de nuestro equipo son hijos de antiguos trabajadores que continúan el oficio: la prueba de que nuestros valores siguen intactos. Nuestro mayor recurso son las personas, y eso nos enorgullece.</p>
+      <p class="body only-mob">Seguimos fabricando en España, en Crevillent y con gente de la zona. Nuestro mayor recurso son las personas.</p>
     </div>
     <div class="mosaico">
-      <figure><img src="https://www.rolscarpets.com/wp-content/uploads/2022/03/fabrica-rols.jpg" alt="Trabajador en el telar" width="1080" height="1350" loading="lazy"><figcaption>Trabajador en el telar</figcaption></figure>
-      <figure><img src="https://www.rolscarpets.com/wp-content/uploads/2022/03/bobinas-hilo.jpg" alt="Trabajador en la zona de bobinas de hilo" width="960" height="520" loading="lazy"><figcaption>Trabajador en la zona de bobinas de hilo</figcaption></figure>
-      <figure><img src="https://www.rolscarpets.com/wp-content/uploads/2022/05/muestraio-alfombras.jpg" alt="Muestrario" width="720" height="896" loading="lazy"><figcaption>Muestrario</figcaption></figure>
-      <figure><img src="https://www.rolscarpets.com/wp-content/uploads/2022/05/telar-alfombras.jpg" alt="Telar de alfombras" width="960" height="1013" loading="lazy"><figcaption>Telar de alfombras</figcaption></figure>
+      <figure><img src="https://www.rolscarpets.com/wp-content/uploads/2022/03/fabrica-rols.jpg" alt="Trabajador en el telar" width="1080" height="1350" loading="lazy"></figure>
+      <figure><img src="https://www.rolscarpets.com/wp-content/uploads/2022/03/bobinas-hilo.jpg" alt="Trabajador en la zona de bobinas de hilo" width="960" height="520" loading="lazy"></figure>
+      <figure><img src="https://www.rolscarpets.com/wp-content/uploads/2022/05/muestraio-alfombras.jpg" alt="Muestrario" width="720" height="896" loading="lazy"></figure>
+      <figure><img src="https://www.rolscarpets.com/wp-content/uploads/2022/05/telar-alfombras.jpg" alt="Telar de alfombras" width="960" height="1013" loading="lazy"></figure>
     </div>
   </section>
 
@@ -396,45 +389,45 @@
         <div class="ruleHead"><p class="eyebrow">Sostenibilidad</p><span class="rule"></span></div>
         <div class="shead-row">
           <h2>Apostando por la sostenibilidad desde el principio</h2>
-          <p class="body">Estamos comprometidos con el medio ambiente desde el mismo diseño de nuestras alfombras y moquetas. Tejemos con fibras naturales, recicladas y regeneradas, sin perder jamás el foco en la calidad que caracteriza a nuestra marca.</p>
+          <p class="body">Somos la primera empresa de alfombras certificada B Corp en Europa, y eso se nota en los materiales, en la fábrica y en el equipo.</p>
         </div>
       </div>
-      <ul class="fibers" aria-label="Las fibras de nuestras alfombras">
+      <ul class="fibers" aria-label="La sostenibilidad en Rols: materiales, medioambiente y equipo">
         <li class="fiber">
           <div class="pic">
-            <img src="https://www.rolscarpets.com/wp-content/uploads/2023/07/material_lana.webp" alt="Oveja con su cría, origen de la lana de las alfombras Rols" width="800" height="1000" loading="lazy">
+            <img src="https://www.rolscarpets.com/wp-content/uploads/2023/07/mediaoambiente-materiales_a.webp" alt="Manos sosteniendo fibra de nylon regenerado" width="960" height="696" loading="lazy">
             <span class="grad" aria-hidden="true"></span>
             <div class="info">
-              <span class="k">Natural</span><span class="mn">Lana</span>
+              <span class="k">Materiales</span><span class="mn">Lana, botellas y redes</span>
               <div class="reveal">
-                <p class="d">Renovable, biodegradable y la fibra con la que nacimos. La mayor parte es de origen nacional y queremos que lo sea toda.</p>
-                <div class="cols"><a href="https://www.rolscarpets.com/alfombras-a-medida/lana/">Alfombras de lana</a></div>
+                <p class="d">Lana de origen nacional y fibras recicladas de botellas y redes de pesca. El 89% de nuestras alfombras ya las lleva.</p>
+                <div class="cols"><a href="https://www.rolscarpets.com/materiales/">Ver materiales <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
               </div>
             </div>
           </div>
         </li>
         <li class="fiber">
           <div class="pic">
-            <img src="https://www.rolscarpets.com/wp-content/uploads/2023/07/material_PET_3.webp" alt="Escamas de PET reciclado procedente de botellas" width="800" height="1000" loading="lazy">
+            <img src="https://anarols.github.io/rols-emails/sostenibilidad/img/paneles-solares.webp" style="object-position:12% 50%" alt="Paneles solares sobre la cubierta de una nave al amanecer" width="1600" height="1083" loading="lazy">
             <span class="grad" aria-hidden="true"></span>
             <div class="info">
-              <span class="k">Reciclado</span><span class="mn">PET reciclado</span>
+              <span class="k">Medioambiente</span><span class="mn">Telares movidos por el sol</span>
               <div class="reveal">
-                <p class="d">Hilo obtenido de botellas de plástico. Resiste el sol y el agua, por eso es la fibra de nuestras alfombras de exterior.</p>
-                <div class="cols"><a href="https://www.rolscarpets.com/colecciones/strata/">Strata</a><a href="https://www.rolscarpets.com/colecciones/kilt/">Kilt</a><a href="https://www.rolscarpets.com/colecciones/terra-atacama/">Terra</a><a href="https://www.rolscarpets.com/colecciones/aral/">Aral</a></div>
+                <p class="d">Los paneles de la cubierta dan el 47% de la electricidad de los telares. Meta: neutros en carbono en 2030.</p>
+                <div class="cols"><a href="https://www.rolscarpets.com/medioambiente/">Ver medioambiente <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
               </div>
             </div>
           </div>
         </li>
         <li class="fiber">
           <div class="pic">
-            <img src="https://www.rolscarpets.com/wp-content/uploads/2023/07/material_nylon.webp" alt="Redes de pesca recuperadas, materia prima del nylon regenerado" width="800" height="1000" loading="lazy">
+            <img src="https://www.rolscarpets.com/wp-content/uploads/2022/05/fabrica-alfombras-rols.jpg" alt="Tejedores de Rols trabajando en la zona de bobinas de la fábrica de Crevillent" width="960" height="735" loading="lazy" style="object-position:100% 50%">
             <span class="grad" aria-hidden="true"></span>
             <div class="info">
-              <span class="k">Regenerado</span><span class="mn">Nylon regenerado</span>
+              <span class="k">Equipo</span><span class="mn">Tejedores de Crevillent</span>
               <div class="reveal">
-                <p class="d">Nace de redes de pesca y de otros desechos preconsumo. Se regenera sin perder calidad, tantas veces como haga falta.</p>
-                <div class="cols"><a href="https://www.rolscarpets.com/alfombras-a-medida/recicladas/">Alfombras recicladas</a></div>
+                <p class="d">Tejemos en Crevillent con gente de la zona. Casi la mitad del equipo lleva más de diez años en la casa.</p>
+                <div class="cols"><a href="https://www.rolscarpets.com/comunidad/">Conoce al equipo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg></a></div>
               </div>
             </div>
           </div>
